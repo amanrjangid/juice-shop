@@ -11,6 +11,9 @@ FROM node:22 AS installer
 COPY . /juice-shop
 WORKDIR /juice-shop
 
+# Pin npm >=12: node:22 ships npm 10.9.8, which crashes on the frontend's
+# $-reference overrides with "Cannot read properties of null (reading 'edgesOut')".
+RUN npm i -g npm@12.0.2
 RUN npm i -g typescript ts-node
 RUN npm install --omit=dev --unsafe-perm
 RUN npm dedupe || true
