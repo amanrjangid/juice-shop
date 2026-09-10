@@ -6,7 +6,7 @@
 # =============================================================================
 
 # ── Stage 1: build Juice Shop the way upstream does ──────────────────────────
-FROM node:18 AS installer
+FROM node:22 AS installer
 
 COPY . /juice-shop
 WORKDIR /juice-shop
@@ -57,7 +57,7 @@ RUN printf "%s\n" \
   > /juice-shop/start-with-vulns.js
 
 # ── Stage 2: runtime image (Debian base -> extra OS-package CVEs, stays runnable)
-FROM node:18-buster
+FROM node:22-bookworm
 
 LABEL org.opencontainers.image.title="Juice Shop (deliberately vulnerable demo)" \
       org.opencontainers.image.description="Qualys code-to-cloud + runtime in-use demo. Do not deploy."
