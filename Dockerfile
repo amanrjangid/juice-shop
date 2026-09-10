@@ -15,7 +15,7 @@ WORKDIR /juice-shop
 # $-reference overrides with "Cannot read properties of null (reading 'edgesOut')".
 RUN npm i -g npm@12.0.2
 RUN npm i -g typescript ts-node
-RUN npm install --omit=dev --unsafe-perm
+RUN npm install --omit=dev
 RUN npm dedupe || true
 RUN rm -rf frontend/node_modules
 
@@ -30,7 +30,7 @@ RUN rm -rf frontend/node_modules
 #   marked@0.3.5          CVE-2017-1000427 / ReDoS
 #   minimist@0.0.8        CVE-2020-7598   prototype pollution
 #   st@0.2.4              CVE-2014-3744   path traversal
-RUN npm install --no-save --omit=dev --unsafe-perm \
+RUN npm install --no-save --omit=dev \
       node-serialize@0.0.4 \
       ejs@2.5.7 \
       jsonwebtoken@0.4.0 \
